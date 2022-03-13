@@ -27,19 +27,38 @@ class message
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
         </svg></div>
     <div class="px-2 pt-1 pb-2 mt-2 bg-light rounded-3 shadow-sm d-flex flex-column justify-content-center align-items-center">
-        <div class="align-self-start text-wrap" style="font-size: 13px;">'. $info['name'] .'</div>
-        <div>' . $info['txt'] .'</div>
-        <div class="mt-1 align-self-end" style="font-size: 10px;">' . $info['time'] .'</div>
+        <div class="align-self-start text-wrap" style="font-size: 13px;">' . $info['name'] . '</div>
+        <div>' . $info['txt'] . '</div>
+        <div class="mt-1 align-self-end" style="font-size: 10px;">' . $info['time'] . '</div>
     </div>
 </div>';
             }
         }
+    }
+    //admin
+    function user_info()
+    {
+        $db = mysqli_connect("localhost", "root", "", "chat");
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+            //check ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+            //to check ip is pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else
+            $ip = $_SERVER['REMOTE_ADDR'];
+        $name = $_COOKIE['name'];
+        $time = date('H:i');
+        $sql = "INSERT INTO admin (name,ip,time) VALUES ('$name','$ip','$time')";
+        mysqli_query($db, $sql);
     }
 }
 //login
 if (isset($_GET['name'])) {
     $name = $_GET['name'];
     setcookie('name', $name, time() + 86400, '/');
+    $info = new message();
+    $info->user_info();
     echo 'ok';
 }
 //logout
