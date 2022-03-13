@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2022 at 03:45 PM
+-- Generation Time: Mar 13, 2022 at 04:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -32,16 +32,6 @@ CREATE TABLE `admin` (
   `name` varchar(250) NOT NULL,
   `time` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`ip`, `name`, `time`) VALUES
-('::1', '', '18:14'),
-('::1', 'محمدامین  تاتاری', '18:14'),
-('::1', '', '18:14'),
-('::1', 'ممد', '18:14');
 
 -- --------------------------------------------------------
 
