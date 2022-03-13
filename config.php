@@ -36,7 +36,7 @@ class message
         }
     }
     //admin
-    function user_info()
+    function user_info($name)
     {
         $db = mysqli_connect("localhost", "root", "", "chat");
         if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -47,7 +47,6 @@ class message
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         else
             $ip = $_SERVER['REMOTE_ADDR'];
-        $name = $_COOKIE['name'];
         $time = date('Y/m/d H:i');
         $sql = "INSERT INTO admin (name,ip,time) VALUES ('$name','$ip','$time')";
         mysqli_query($db, $sql);
@@ -58,7 +57,7 @@ if (isset($_GET['name'])) {
     $name = $_GET['name'];
     setcookie('name', $name, time() + 86400, '/');
     $info = new message();
-    $info->user_info();
+    $info->user_info($name);
     echo 'ok';
 }
 //logout
