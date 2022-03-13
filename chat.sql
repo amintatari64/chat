@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2022 at 03:25 PM
+-- Generation Time: Mar 13, 2022 at 03:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ip` varchar(250) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `time` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ip`, `name`, `time`) VALUES
+('::1', '', '18:14'),
+('::1', 'محمدامین  تاتاری', '18:14'),
+('::1', '', '18:14'),
+('::1', 'ممد', '18:14');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `chat`
 --
 
@@ -32,6 +54,13 @@ CREATE TABLE `chat` (
   `txt` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`name`, `txt`, `time`) VALUES
+('mohammad', 'mohmmad', '17:57');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
