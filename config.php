@@ -48,7 +48,7 @@ class message
         else
             $ip = $_SERVER['REMOTE_ADDR'];
         $name = $_COOKIE['name'];
-        $time = date('H:i');
+        $time = date('Y/m/d H:i');
         $sql = "INSERT INTO admin (name,ip,time) VALUES ('$name','$ip','$time')";
         mysqli_query($db, $sql);
     }
@@ -77,4 +77,15 @@ if (isset($_GET['message'])) {
     $control = new message();
     $control->send($txt);
     echo "tr";
+}
+//admin panel
+if (isset($_GET['admin'])) {
+    $db = mysqli_connect("localhost", "root", "", "chat");
+    $sql = "SELECT * FROM admin ";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        while ($info = $result->fetch_assoc()) {
+            echo "user ip = " . $info['ip'] . "<br> name = " . $info['name'] . "<br>time = " . $info['time'] . "<br><br><hr><br>";
+        }
+    }
 }
